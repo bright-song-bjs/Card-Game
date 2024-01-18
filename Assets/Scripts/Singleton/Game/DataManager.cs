@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
@@ -22,6 +23,16 @@ public class DataManager: MonoBehaviour, Singleton {
 		LoadGameData();
 	}
 
+	// Get Scriptable Object Data
+	public Dictionary<CardType, int> GetPlayerCardCollection() {
+		return gameDataSO.playerCardCollection;
+	}
+
+	// Get Scriptable Object Data
+	public List<int> GetPlayerHighlightedVertices() {
+		return gameDataSO.playerHighlightedVertices;
+	}
+
 	private void OnApplicationPause(bool pauseStatus) {
 		SaveGameData();
 	}
@@ -31,6 +42,9 @@ public class DataManager: MonoBehaviour, Singleton {
 	}
 
 	private void LoadGameData() {
+		// This part is commented out because now it's not time to actually 
+		//   load saved data yet.
+		/*
 		var path = GameDataJsonPath;
 		if (File.Exists(path)) {
 			var json = File.ReadAllText(path);
@@ -38,6 +52,8 @@ public class DataManager: MonoBehaviour, Singleton {
 		} else {
 			gameDataSO = ScriptableObject.CreateInstance<GameDataSO>();
 		}
+		*/
+		gameDataSO = ScriptableObject.CreateInstance<GameDataSO>();
 	}
 
 	private void SaveGameData() {
