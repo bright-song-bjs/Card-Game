@@ -23,15 +23,25 @@ public class DataManager: MonoBehaviour, Singleton {
 		LoadGameData();
 	}
 
-	// Get Scriptable Object Data
+	// get data
 	public Dictionary<CardType, int> GetPlayerCardCollection() {
 		return gameDataSO.playerCardCollection;
 	}
 
-	// Get Scriptable Object Data
-	public List<int> GetPlayerHighlightedVertices() {
-		return gameDataSO.playerHighlightedVertices;
+	public List<int> GetPlayerUnlockedVertices() {
+		return gameDataSO.playerUnlockedVertices;
 	}
+	// end get data
+
+	// set data
+	public void AddPlayerUnlockedVertex(int i) {
+		gameDataSO.playerUnlockedVertices.Add(i);
+	}
+
+	public void AddPlayerCard(CardType cardType, int count = 1) {
+		gameDataSO.playerCardCollection[cardType] += count;
+	}
+	// end set data
 
 	private void OnApplicationPause(bool pauseStatus) {
 		SaveGameData();

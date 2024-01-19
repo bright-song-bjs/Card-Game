@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -6,8 +7,10 @@ using UnityEngine;
 public class CardLibrary: MonoBehaviour {
 	public static CardLibrary Instance { get; private set; }
 
-	// Later: load prefab as needed instead of loading all in once.
-	public Dictionary<CardType, GameObject> contents;
+	[SerializeField]
+	private List<CardLibraryItem> items;
+
+	private Dictionary<CardType, CardBase> cardBaseByCardType;
 
 	private void Awake() {
 		if (Instance == null) {
@@ -16,9 +19,13 @@ public class CardLibrary: MonoBehaviour {
 		} else {
 			Destroy(gameObject);
 		}
+
+		foreach (var item in items) {
+			cardBaseByCardType[item.cardType] = item.cardBase;
+		}
 	}
 
-	public GameObject Get(CardType cardType) {
-		return contents[cardType];
+	public CardBase Get(CardType cardType) {
+		return cardBaseByCardType[cardType];
 	}
 }

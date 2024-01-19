@@ -1,5 +1,5 @@
 public enum BattleState {
-	none,
+	None,
 	playerTurn,
 	enemyTurn,
 }

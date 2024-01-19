@@ -1,9 +1,9 @@
 public enum UIType {
-	mainHUD,
+	MainHUD,
 	LevelHUD,
 	StartMenu,
 	QuitMenu,
 	PauseMenu,
 	SettingsMenu,
-	GraphMenu,
+	GraphView,
 }

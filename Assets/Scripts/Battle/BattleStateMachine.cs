@@ -1,10 +1,12 @@
 public class BattleStateMachine {
-	private BattleState currentState = BattleState.none;
+	private BattleState currentState = BattleState.None;
 
 	public void Enter(BattleState state) {
-		ExitCurrentState();
-		currentState = state;
-		EnterNewState();
+		if (currentState != state) {
+			ExitCurrentState();
+			currentState = state;
+			EnterNewState();
+		}
 	}
 
 	private void ExitCurrentState() {
