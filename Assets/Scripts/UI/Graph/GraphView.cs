@@ -7,7 +7,8 @@ public class GraphView: UIBase {
 
   public RectTransform arrowsLayer;
   
-  private Dictionary<int, Node> nodeByVertex;
+  private Dictionary<int, Node> nodeByVertex =
+    new Dictionary<int, Node>();
   
   private void Start() {
     var library = GraphLibrary.Instance;
@@ -18,6 +19,7 @@ public class GraphView: UIBase {
       // instantiate
       var nodePrefab = library.GetNodeByVertex(placeholder.vertex);
       var node = Instantiate(nodePrefab, nodesLayer);
+      nodeByVertex.Add(placeholder.vertex, node);
 
       // adjust location
       var target = placeholder.GetComponent<RectTransform>();
@@ -40,7 +42,7 @@ public class GraphView: UIBase {
   }
 
   private void Update() {
-    var states = GraphManager.Instance.GetNodeStates();
+    var states = GraphManager.Instance.GetNodeStatesOfAll();
     for (int i = 0; i < states.Length; ++i) {
       var node = nodeByVertex[i];
       node.SetState(states[i]);
@@ -49,17 +51,11 @@ public class GraphView: UIBase {
 
   // test-only buttons
   public void OnButtonClick_StartInteracting() {
-    var mask = GraphManager.Instance.mask;
-    for (int i = 0; i < mask.Length; ++i) {
-      mask[i] = false;
-    }
+    GraphManager.Instance.UnmaskAll();
   }
 
   public void OnButtonClick_EndInteracting() {
-    var mask = GraphManager.Instance.mask;
-    for (int i = 0; i < mask.Length; ++i) {
-      mask[i] = true;
-    }
+    GraphManager.Instance.MaskAll();
   }
 
   public void OnButtonClick_GoBack() {

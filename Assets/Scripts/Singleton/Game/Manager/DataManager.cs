@@ -3,15 +3,15 @@ using UnityEngine;
 using System.IO;
 using System;
 
-public class DataManager: MonoBehaviour, Singleton {
-
+public class DataManager: MonoBehaviour {
 	public static DataManager Instance { get; private set; }
 
 	private static String GameDataJsonPath {
 		get => Application.persistentDataPath + "/GameData.json";
 	}
 
-	private GameDataSO gameDataSO;
+	private GameDataSO gameDataSO =
+	  ScriptableObject.CreateInstance<GameDataSO>();
 	
 	private void Awake() {
 		if (Instance == null) {
@@ -20,7 +20,9 @@ public class DataManager: MonoBehaviour, Singleton {
 		} else {
 			Destroy(gameObject);
 		}
-		LoadGameData();
+		
+		// this is commented out for test purposes
+		// LoadGameData();
 	}
 
 	// get data
@@ -52,18 +54,11 @@ public class DataManager: MonoBehaviour, Singleton {
 	}
 
 	private void LoadGameData() {
-		// This part is commented out because now it's not time to actually 
-		//   load saved data yet.
-		/*
 		var path = GameDataJsonPath;
 		if (File.Exists(path)) {
 			var json = File.ReadAllText(path);
-			gameDataSO = JsonUtility.FromJson<GameDataSO>(json);
-		} else {
-			gameDataSO = ScriptableObject.CreateInstance<GameDataSO>();
-		}
-		*/
-		gameDataSO = ScriptableObject.CreateInstance<GameDataSO>();
+			JsonUtility.FromJsonOverwrite(json, gameDataSO);
+		} 
 	}
 
 	private void SaveGameData() {

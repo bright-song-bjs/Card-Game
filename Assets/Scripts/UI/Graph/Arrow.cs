@@ -23,10 +23,10 @@ public class Arrow: MonoBehaviour {
 		// end = Vector2.MoveTowards(end, start, clip);
 
 		// calculate the rotation
-		var arrowAngle
-			= Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg;
-		var directionAngle  
-			= Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+		var arrowAngle =
+			Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg;
+		var directionAngle =
+			Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
 		var rotationZ = directionAngle - arrowAngle;
 
 		// get RectTransform component
@@ -37,12 +37,12 @@ public class Arrow: MonoBehaviour {
 		
 		// set sizeDelta 
 		var sizeDelta = rectTransform.sizeDelta;
-		rectTransform.sizeDelta 
-			= new Vector2(sizeDelta.x, Vector2.Distance(start, end));
+		rectTransform.sizeDelta =
+			new Vector2(sizeDelta.x, Vector2.Distance(start, end));
 		
 		// set localEulerAngles
 		var eulerAngle = rectTransform.localEulerAngles;
-		rectTransform.localEulerAngles 
-			= new Vector3(eulerAngle.x, eulerAngle.y, rotationZ);
+		rectTransform.localEulerAngles =
+			new Vector3(eulerAngle.x, eulerAngle.y, rotationZ);
 	}
 }

@@ -1,18 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class GraphManager: MonoBehaviour {
   public static GraphManager Instance { get; private set; }
 
-	public Graph graph;
+  private Graph graph;
   
-  public int[] indegree;
+  private int[] indegree;
 
-  public bool[] unlocked;
+  private bool[] unlocked;
 
-  public bool[] mask;
+  private bool[] mask;
 
   private void Awake() {
     if (Instance == null) {
@@ -21,7 +19,57 @@ public class GraphManager: MonoBehaviour {
 		} else {
 			Destroy(gameObject);
 		}
+  }
 
+  private void Start() {
+    SetUpGraph();
+  }
+
+  public void UnlockVertex(int vertex) {
+    unlocked[vertex] = true;
+    DataManager.Instance.AddPlayerUnlockedVertex(vertex);
+    foreach (var j in graph.AdjacentVerticesFrom(vertex)) {
+      indegree[j] -= 1;
+    }
+  }
+
+  public void MaskVertex(int vertex) {
+    mask[vertex] = true;
+  }
+
+  public void MaskAll() {
+    for (int i = 0; i < mask.Length; ++i) {
+      mask[i] = true;
+    }
+  }
+
+  public void UnmaskAll() {
+    for (int i = 0; i < mask.Length; ++i) {
+      mask[i] = false;
+    }
+  }
+
+  public NodeState GetNodeStateOfVertex(int vertex) {
+    if (unlocked[vertex]) {
+      return NodeState.Unlocked;
+    } else {
+      if (indegree[vertex] == 0 && !mask[vertex]) {
+        return NodeState.Candidate;
+      } else {
+        return NodeState.Locked;
+      }
+    }
+  }
+
+  public NodeState[] GetNodeStatesOfAll() {
+    var states = new NodeState[indegree.Length];
+    for (int i = 0; i < indegree.Length; ++i) {
+      states[i] = GetNodeStateOfVertex(i);
+    }
+    return states;
+  }
+
+  private void SetUpGraph() {
     // set up graph
     var numberOfVertices = GraphLibrary.Instance.NumberOfVertices;
     graph = new Graph(numberOfVertices);
@@ -41,42 +89,13 @@ public class GraphManager: MonoBehaviour {
 
     // set up mask array
     mask = new bool[numberOfVertices];
-  }
 
-  private void Start() {
-    // var vertices = DataManager.Instance.GetPlayerUnlockedVertices();
-    // simply initialize it here for test purposes
-    var vertices = new List<int> { 0 };
+    // update graph from saved date
+    var vertices = DataManager.Instance.GetPlayerUnlockedVertices();
+    // modify it here for test purposes
+    vertices = new List<int>();
     foreach (var vertex in vertices) {
       UnlockVertex(vertex);
     }
-  }
-
-  public void UnlockVertex(int vertex) {
-    unlocked[vertex] = true;
-    DataManager.Instance.AddPlayerUnlockedVertex(vertex);
-    foreach (var j in graph.AdjacentVerticesFrom(vertex)) {
-      indegree[j] -= 1;
-    }
-  }
-
-  public NodeState GetNodeStateOfVertex(int vertex) {
-    if (unlocked[vertex]) {
-      return NodeState.Unlocked;
-    } else {
-      if (indegree[vertex] == 0 && !mask[vertex]) {
-        return NodeState.Candidate;
-      } else {
-        return NodeState.Locked;
-      }
-    }
-  }
-
-  public NodeState[] GetNodeStates() {
-    var states = new NodeState[indegree.Length];
-    for (int i = 0; i < indegree.Length; ++i) {
-      states[i] = GetNodeStateOfVertex(i);
-    }
-    return states;
   }
 }

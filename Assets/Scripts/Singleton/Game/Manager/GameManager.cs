@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager: MonoBehaviour {
 	public static GameManager Instance { get; private set; }
@@ -15,16 +12,7 @@ public class GameManager: MonoBehaviour {
 		}
 	}
 
-	/*
-	private GameObject FindActiveScreenSpaceOverlayCanvas() {
-		var activeScene = SceneManager.GetActiveScene();
-		var rootObjects = activeScene.GetRootGameObjects();
-		foreach (var obj in rootObjects) {
-			if (obj.CompareTag("ScreenSpaceOverlayCanvas")) {
-				return obj;
-			}
-		}
-		return null;
+	private void Start() {
+		
 	}
-	*/
 }

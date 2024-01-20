@@ -7,7 +7,8 @@ public class UILibrary: MonoBehaviour {
 	[SerializeField]
 	private List<UILibraryItem> items;
 	
-	private Dictionary<UIType, UIBase> uiBaseByUIType;
+	private Dictionary<UIType, UIBase> uiBaseByUIType =
+		new Dictionary<UIType, UIBase>();
 
 	private void Awake() {
 		if (Instance == null) {
@@ -18,7 +19,7 @@ public class UILibrary: MonoBehaviour {
 		}
 
 		foreach (var item in items) {
-			uiBaseByUIType[item.uiType] = item.uiBase;
+			uiBaseByUIType.Add(item.uiType, item.uiBase);
 		}
 	}
 

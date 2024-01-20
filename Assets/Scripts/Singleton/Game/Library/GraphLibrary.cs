@@ -8,12 +8,13 @@ public class GraphLibrary: MonoBehaviour {
 	private List<Node> nodes;
 
 	[SerializeField]
-	private List<(int from, int to)> connections;
+	private List<NodeConnection> connections;
 
 	[SerializeField]
 	private Arrow arrow;
 	
-	private Dictionary<int, Node> nodeByVertex;
+	private Dictionary<int, Node> nodeByVertex =
+		new Dictionary<int, Node>();
 
 	private void Awake() {
 		if (Instance == null) {
@@ -24,7 +25,7 @@ public class GraphLibrary: MonoBehaviour {
 		}
 
 		foreach (var node in nodes) {
-			nodeByVertex[node.index] = node;
+			nodeByVertex.Add(node.index, node);
 		}
 	}
 
@@ -36,11 +37,15 @@ public class GraphLibrary: MonoBehaviour {
 		return nodeByVertex[vertex];
 	}
 
-	public List<(int i, int j)> GetEdges() {
-		return connections;
-	}
-
 	public Arrow GetArrow() {
 		return arrow;
+	}
+
+	public List<(int i, int j)> GetEdges() {
+		var edges = new List<(int i, int j)>();
+		foreach (var connection in connections) {
+			edges.Add((connection.from, connection.to));
+		}
+		return edges;
 	}
 }

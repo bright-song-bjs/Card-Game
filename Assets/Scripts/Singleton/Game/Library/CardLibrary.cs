@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Collections;
 using UnityEngine;
 
 public class CardLibrary: MonoBehaviour {
@@ -10,7 +7,8 @@ public class CardLibrary: MonoBehaviour {
 	[SerializeField]
 	private List<CardLibraryItem> items;
 
-	private Dictionary<CardType, CardBase> cardBaseByCardType;
+	private Dictionary<CardType, CardBase> cardBaseByCardType =
+		new Dictionary<CardType, CardBase>();
 
 	private void Awake() {
 		if (Instance == null) {
@@ -21,7 +19,7 @@ public class CardLibrary: MonoBehaviour {
 		}
 
 		foreach (var item in items) {
-			cardBaseByCardType[item.cardType] = item.cardBase;
+			cardBaseByCardType.Add(item.cardType, item.cardBase);
 		}
 	}
 
