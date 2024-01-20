@@ -15,4 +15,8 @@ public class BattleController: MonoBehaviour {
 	private void OnDestroy() {
 		Instance = null;
 	}
+
+	private void Start() {
+		UIManager.Instance.OpenPanel(UIType.LevelHUD);
+	}
 }

@@ -35,12 +35,12 @@ public class DataManager: MonoBehaviour {
 	// end get data
 
 	// set data
-	public void AddPlayerUnlockedVertex(int i) {
-		gameDataSO.playerUnlockedVertices.Add(i);
-	}
-
 	public void AddPlayerCard(CardType cardType, int count = 1) {
 		gameDataSO.playerCardCollection[cardType] += count;
+	}
+
+	public void AddPlayerUnlockedVertex(int i) {
+		gameDataSO.playerUnlockedVertices.Add(i);
 	}
 	// end set data
 

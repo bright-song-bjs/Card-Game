@@ -8,7 +8,7 @@ public class MainHUD: UIBase {
 	}
 
 	public void OnButtonClick_NewLevek() {
-		
+		SceneManager.LoadScene("BattleScene");
 	}
 
 	public void OnButtonClick_GraphView() {

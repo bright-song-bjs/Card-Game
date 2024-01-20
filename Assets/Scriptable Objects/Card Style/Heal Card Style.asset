@@ -10,6 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 623b51dc9ce1c48d7a4cd164253b98e8, type: 3}
-  m_Name: HealCardStyleSO
+  m_Name: Heal Card Style
   m_EditorClassIdentifier: 
+  cardName: Heal Card
+  cardDescription: Use this card to heal yourself
   cardBackSprite: {fileID: 21300000, guid: d85d40a317509455ba2e8f1b4a37c440, type: 3}

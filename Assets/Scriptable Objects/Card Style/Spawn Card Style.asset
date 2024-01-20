@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86a7772baa8da43d1890df265589b857, type: 3}
-  m_Name: Default
+  m_Script: {fileID: 11500000, guid: 623b51dc9ce1c48d7a4cd164253b98e8, type: 3}
+  m_Name: Spawn Card Style
   m_EditorClassIdentifier: 
-  playerUnlockedVertices: 00000000010000000200000004000000
+  cardName: Spawn Card
+  cardDescription: Use this card to spawn a soldier.
+  cardBackSprite: {fileID: 21300000, guid: 665b4110a290a4f21b74bb758be0d672, type: 3}

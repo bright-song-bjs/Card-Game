@@ -22,7 +22,10 @@ public class UIManager: MonoBehaviour {
 		}
 	}
 
-	public void OpenPanel(UIType uiType, bool hideCurrent = true) {
+	public UIBase OpenPanelReturningInstance(
+		UIType uiType, 
+		bool hideCurrent = true
+	) {
 		var uiPrefab = UILibrary.Instance.Get(uiType);
 		var uiBase = Instantiate(uiPrefab, mainCanvas, false);
 		if (!uiStack.IsEmpty && hideCurrent) {
@@ -30,6 +33,12 @@ public class UIManager: MonoBehaviour {
 		}
 		uiStack.Push(uiBase);
 		uiBase.Show();
+		return uiBase;
+	}
+
+	public void OpenPanel(UIType uiType, bool hideCurrent = true) {
+		UIBase uiBase;
+		uiBase = OpenPanelReturningInstance(uiType, hideCurrent);
 	}
 
 	public void CloseCurrentPanel() {

@@ -5,5 +5,9 @@ using UnityEngine;
 	menuName = "Scriptable Object/Card Style"
 )]
 public class CardStyleSO: ScriptableObject {
+	public string cardName;
+
+	public string cardDescription;
+	
 	public Sprite cardBackSprite;
 }
