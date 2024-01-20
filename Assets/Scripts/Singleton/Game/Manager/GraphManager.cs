@@ -25,9 +25,11 @@ public class GraphManager: MonoBehaviour {
     SetUpGraph();
   }
 
-  public void UnlockVertex(int vertex) {
+  public void UnlockVertex(int vertex, bool updateData = true) {
     unlocked[vertex] = true;
-    DataManager.Instance.AddPlayerUnlockedVertex(vertex);
+    if (updateData) {
+      DataManager.Instance.AddPlayerUnlockedVertex(vertex);
+    }
     foreach (var j in graph.AdjacentVerticesFrom(vertex)) {
       indegree[j] -= 1;
     }
@@ -93,7 +95,7 @@ public class GraphManager: MonoBehaviour {
     // update graph from saved date
     var vertices = DataManager.Instance.GetPlayerUnlockedVertices();
     foreach (var vertex in vertices) {
-      UnlockVertex(vertex);
+      UnlockVertex(vertex, false);
     }
   }
 }

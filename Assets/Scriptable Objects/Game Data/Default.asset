@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a7772baa8da43d1890df265589b857, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
-  playerUnlockedVertices: 
+  playerUnlockedVertices: 00000000010000000200000004000000

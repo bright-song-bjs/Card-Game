@@ -25,25 +25,26 @@ public class Node: MonoBehaviour {
 	}
 
 	public void SetState(NodeState state) {
-		if (currentState != state) {
-			currentState = state;
-			switch (state) {
-			case NodeState.None:
-				image.sprite = null;
-				break;
-			case NodeState.Locked:
-				image.sprite = lockedStateSprite;
-				break;
-			case NodeState.Candidate:
-				image.sprite = candidateStateSprite;
-				break;
-			case NodeState.Unlocked:
-				image.sprite = unlockedStateSprite;
-				break;
-			}
-			// adjust the size: native or whatever
-			image.SetNativeSize();
+		if (currentState == state) {
+			return;
 		}
+		currentState = state;
+		switch (state) {
+		case NodeState.None:
+			image.sprite = null;
+			break;
+		case NodeState.Locked:
+			image.sprite = lockedStateSprite;
+			break;
+		case NodeState.Candidate:
+			image.sprite = candidateStateSprite;
+			break;
+		case NodeState.Unlocked:
+			image.sprite = unlockedStateSprite;
+			break;
+		}
+		// adjust the size: native or whatever
+		image.SetNativeSize();
 	}
 
 	private void OnButtonClick() {
