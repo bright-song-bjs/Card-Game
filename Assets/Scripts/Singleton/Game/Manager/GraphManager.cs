@@ -92,8 +92,6 @@ public class GraphManager: MonoBehaviour {
 
     // update graph from saved date
     var vertices = DataManager.Instance.GetPlayerUnlockedVertices();
-    // modify it here for test purposes
-    vertices = new List<int>();
     foreach (var vertex in vertices) {
       UnlockVertex(vertex);
     }

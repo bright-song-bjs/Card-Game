@@ -13,6 +13,6 @@ public class GameManager: MonoBehaviour {
 	}
 
 	private void Start() {
-		
+		UIManager.Instance.OpenPanel(UIType.MainHUD);
 	}
 }

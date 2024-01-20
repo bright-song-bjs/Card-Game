@@ -10,8 +10,8 @@ public class DataManager: MonoBehaviour {
 		get => Application.persistentDataPath + "/GameData.json";
 	}
 
-	private GameDataSO gameDataSO =
-	  ScriptableObject.CreateInstance<GameDataSO>();
+	[SerializeField]
+	private GameDataSO gameDataSO;
 	
 	private void Awake() {
 		if (Instance == null) {
@@ -21,8 +21,7 @@ public class DataManager: MonoBehaviour {
 			Destroy(gameObject);
 		}
 		
-		// this is commented out for test purposes
-		// LoadGameData();
+		LoadGameData();
 	}
 
 	// get data
@@ -54,15 +53,19 @@ public class DataManager: MonoBehaviour {
 	}
 
 	private void LoadGameData() {
+		/*
 		var path = GameDataJsonPath;
 		if (File.Exists(path)) {
 			var json = File.ReadAllText(path);
 			JsonUtility.FromJsonOverwrite(json, gameDataSO);
 		} 
+		*/
 	}
 
 	private void SaveGameData() {
+		/*
 		var json = JsonUtility.ToJson(gameDataSO);
 		File.WriteAllText(GameDataJsonPath, json);
+		*/
 	}
 }
