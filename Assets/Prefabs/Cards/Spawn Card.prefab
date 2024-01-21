@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 8892035169089545692}
   - component: {fileID: 4020873712965988712}
   - component: {fileID: 7599462718863330787}
-  - component: {fileID: 2207926221920650238}
+  - component: {fileID: 2652735010781982371}
   m_Layer: 5
   m_Name: Spawn Card
   m_TagString: Untagged
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2207926221920650238
+--- !u!114 &2652735010781982371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,13 +221,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 945385283012804918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4311fa8d2ebb43f89871387c5722371, type: 3}
+  m_Script: {fileID: 11500000, guid: 4861ed83a037f4c5b99c165b6909909e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardStyleSO: {fileID: 11400000, guid: 1ccd16f45727742c893b349b186e28d1, type: 2}
   cardBackImage: {fileID: 7599462718863330787}
-  cardName: {fileID: 7139281332698676969}
-  cardDescription: {fileID: 8676914060283658966}
+  cardNameTMP: {fileID: 7139281332698676969}
+  cardDescriptionTMP: {fileID: 8676914060283658966}
 --- !u!1 &3209669814007315215
 GameObject:
   m_ObjectHideFlags: 0

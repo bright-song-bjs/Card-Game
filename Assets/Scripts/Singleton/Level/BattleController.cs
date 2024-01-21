@@ -5,6 +5,9 @@ using UnityEngine;
 public class BattleController: MonoBehaviour {
 	public static BattleController Instance { get; private set; }
 
+	[HideInInspector]
+	public LevelHUD levelHUD;
+
 	private void Awake() {
 		if (Instance != null) {
 			Destroy(Instance.gameObject);
@@ -17,6 +20,7 @@ public class BattleController: MonoBehaviour {
 	}
 
 	private void Start() {
-		UIManager.Instance.OpenPanel(UIType.LevelHUD);
+		var uiBase = UIManager.Instance.OpenPanel(UIType.LevelHUD);
+		levelHUD = uiBase as LevelHUD;
 	}
 }
