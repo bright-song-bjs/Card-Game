@@ -12,18 +12,28 @@ public class LevelHUD: UIBase {
 	[SerializeField]
 	private TextMeshProUGUI playerManaPointsTMP;
 
-	private void Start() {
+	private void OnEnable() {
 		var player = PlayerController.Instance;
+		if (player != null) {
+			player.OnHealthPercentageChange += SetPlayerHealthPercentage;
+			player.OnManaPointsChange += SetPlayerManaPoints;
+		}
 		var enemy = EnemyController.Instance;
+		if (enemy != null) {
+			enemy.OnHealthPercentageChange += SetEnemyHealthPercentage;
+		}
+	}
 
-		// initial player health points
-		SetPlayerHealthPercentage(player.GetMaxHealthPoints());
-
-		// initial enemy health points
-		SetEnemyHealthPercentage(enemy.GetMaxHealthPoints());
-
-		// initial player mana points
-		SetPlayerManaPoints(player.GetInitialManaPoints());
+	private void OnDisable() {
+		var player = PlayerController.Instance;
+		if (player != null) {
+			player.OnHealthPercentageChange -= SetPlayerHealthPercentage;
+			player.OnManaPointsChange -= SetPlayerManaPoints;
+		}
+		var enemy = EnemyController.Instance;
+		if (enemy != null) {
+			enemy.OnHealthPercentageChange -= SetEnemyHealthPercentage;
+		}
 	}
 
 	public void SetPlayerHealthPercentage(float percentage) {

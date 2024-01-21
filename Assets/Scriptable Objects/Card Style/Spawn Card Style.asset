@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Spawn Card
   cardDescription: Use this card to spawn a soldier.
-  cardBackSprite: {fileID: 21300000, guid: 665b4110a290a4f21b74bb758be0d672, type: 3}
+  cardBackSprite: {fileID: 21300000, guid: 084d5b14ddadc4b96be9a998c0ee9bdc, type: 3}

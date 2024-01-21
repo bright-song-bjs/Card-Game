@@ -1,15 +1,50 @@
-using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GraphView: UIBase {
-  public RectTransform nodesLayer;
+  [SerializeField]
+  private RectTransform nodesLayer;
 
-  public RectTransform arrowsLayer;
+  [SerializeField]
+  private RectTransform arrowsLayer;
+
+  [SerializeField]
+  private RectTransform battleSceneOnly;
+
+  [SerializeField]
+  private TextMeshProUGUI playerManaPointsTMP;
+  
+  [SerializeField]
+  private TextMeshProUGUI choosingButtonTMP;
   
   private Dictionary<int, Node> nodeByVertex =
     new Dictionary<int, Node>();
+
+  private bool playerCanChoose = false;
+  
+  private void OnEnable() {
+    var player = PlayerController.Instance;
+    if (player != null) {
+      // open Graph View in Battle Scene
+      battleSceneOnly.gameObject.SetActive(true);
+      SetPlayerManaPoints(player.GetManaPoints());
+      player.OnManaPointsChange += SetPlayerManaPoints;
+    } else {
+      // open Graph View in Main Scene
+      battleSceneOnly.gameObject.SetActive(false);
+    }
+  }
+
+  private void OnDisable() {
+    var player = PlayerController.Instance;
+    if (player != null) {
+      // open Graph View in Battle Scene
+      player.OnManaPointsChange -= SetPlayerManaPoints;
+    } else {
+      // open Graph View in Main Scene
+    }
+  }
   
   private void Start() {
     var library = GraphLibrary.Instance;
@@ -40,6 +75,9 @@ public class GraphView: UIBase {
       // 85 is temporarily hardcoded here which depends on node size
       arrow.PlaceAt(i.anchoredPosition, j.anchoredPosition, 85f);
     }
+
+    // player can not unlock any node at this stage
+    StopInteracting();
   }
 
   private void Update() {
@@ -50,15 +88,32 @@ public class GraphView: UIBase {
     }
   }
 
-  public void OnButtonClick_StartInteracting() {
-    GraphManager.Instance.UnmaskAll();
-  }
+  public void SetPlayerManaPoints(int manaPoints) {
+		playerManaPointsTMP.text = manaPoints.ToString();
+	}
 
-  public void OnButtonClick_EndInteracting() {
-    GraphManager.Instance.MaskAll();
+  // test-only buttons
+  public void OnButtonClick_Interacting() {
+    if (playerCanChoose) {
+      StopInteracting();
+    } else {
+      StartInteracting();
+    }
   }
 
   public void OnButtonClick_GoBack() {
     UIManager.Instance.CloseCurrentPanel();
+  }
+
+  private void StartInteracting() {
+    choosingButtonTMP.text = "Stop Choosing";
+    playerCanChoose = true;
+    GraphManager.Instance.UnmaskAll();
+  }
+
+  private void StopInteracting() {
+    choosingButtonTMP.text = "Start Choosing";
+    playerCanChoose = false;
+    GraphManager.Instance.MaskAll();
   }
 }

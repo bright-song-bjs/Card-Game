@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class EnemyController: MonoBehaviour {
 	public static EnemyController Instance { get; private set; }
+
+	public event Action<float> OnHealthPercentageChange;
 
 	[SerializeField]
 	private int maxHealthPoints;
@@ -26,13 +27,15 @@ public class EnemyController: MonoBehaviour {
 	}
 
 	public void SetHealthPoints(int healthPoints) {
+		if (this.healthPoints == healthPoints) {
+			return;
+		}
 		if (healthPoints < 0 || healthPoints > maxHealthPoints) {
 			return;
 		}
 		this.healthPoints = healthPoints;
-		var levelHUD = BattleController.Instance.levelHUD;
 		var percentage = (float)healthPoints / (float)maxHealthPoints;
-		levelHUD.SetEnemyHealthPercentage(percentage);
+		OnHealthPercentageChange?.Invoke(percentage);
 	}
 
 	public int GetMaxHealthPoints() {

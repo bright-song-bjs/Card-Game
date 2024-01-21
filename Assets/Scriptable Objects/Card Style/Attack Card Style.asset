@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Attack Card Style
   m_EditorClassIdentifier: 
   cardName: Attack Card
-  cardDescription: Use this card to attack enemy.
+  cardDescription: Use this card to attack your enemy.
   cardBackSprite: {fileID: 21300000, guid: 3da7ea9bac8a746269b1b0a0ff1d6258, type: 3}

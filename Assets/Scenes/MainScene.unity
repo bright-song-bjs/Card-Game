@@ -479,6 +479,9 @@ MonoBehaviour:
     cardBase: {fileID: 5454551291104752292, guid: e481949a3ffb14e3ebc95ecf3fcf2ddb,
       type: 3}
   - cardType: 2
+    cardBase: {fileID: 9091528002188751592, guid: 663b23153b81741bf86563d533ddd763,
+      type: 3}
+  - cardType: 3
     cardBase: {fileID: 2652735010781982371, guid: 5846756dcda794071967be01c4af4929,
       type: 3}
 --- !u!1 &781536850

@@ -1,9 +1,16 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController: MonoBehaviour {
 	public static PlayerController Instance { get; private set; }
+
+	public event Action<float> OnHealthPercentageChange;
+
+	public event Action<int> OnManaPointsChange;
+
+	// [HideInInspector]
+	// public List<CardBase> holdingCards = new List<CardBase>();
 
 	[SerializeField]
 	private RectTransform playerCardArea;
@@ -40,6 +47,8 @@ public class PlayerController: MonoBehaviour {
 			for (int i = 0; i < element.Value; ++i) {
 				var cardPrefab = library.Get(element.Key);
 				var cardBase = Instantiate(cardPrefab, playerCardArea);
+				cardBase.owner = Caster.Player;
+				// holdingCards.Add(cardBase);
 			}
 		}
 	}
@@ -49,13 +58,15 @@ public class PlayerController: MonoBehaviour {
 	}
 
 	public void SetHealthPoints(int healthPoints) {
+		if (this.healthPoints == healthPoints) {
+			return;
+		}
 		if (healthPoints < 0 || healthPoints > maxHealthPoints) {
 			return;
 		}
 		this.healthPoints = healthPoints;
-		var levelHUD = BattleController.Instance.levelHUD;
 		var percentage = (float)healthPoints / (float)maxHealthPoints;
-		levelHUD.SetPlayerHealthPercentage(percentage);
+		OnHealthPercentageChange?.Invoke(percentage);
 	}
 
 	public int GetMaxHealthPoints() {
@@ -67,12 +78,14 @@ public class PlayerController: MonoBehaviour {
 	}
 
 	public void SetManaPoints(int manaPoints) {
+		if (this.manaPoints == manaPoints) {
+			return;
+		}
 		if (manaPoints < 0) {
 			return;
 		}
 		this.manaPoints = manaPoints;
-		var levelHUD = BattleController.Instance.levelHUD;
-		levelHUD.SetPlayerManaPoints(manaPoints);
+		OnManaPointsChange?.Invoke(manaPoints);
 	}
 
 	public int GetInitialManaPoints() {

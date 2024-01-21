@@ -145,9 +145,9 @@ GameObject:
   - component: {fileID: 8892035169089545692}
   - component: {fileID: 4020873712965988712}
   - component: {fileID: 7599462718863330787}
-  - component: {fileID: 6409369210838436328}
+  - component: {fileID: 9091528002188751592}
   m_Layer: 5
-  m_Name: Attack Card
+  m_Name: Energize Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6409369210838436328
+--- !u!114 &9091528002188751592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,15 +221,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 945385283012804918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1eed1ab575be4c40b110573626fc84d, type: 3}
+  m_Script: {fileID: 11500000, guid: f07119d4e9e4c47668c6d29389e65330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: 0
-  cardStyleSO: {fileID: 11400000, guid: 0d43b4642da894c4e96f1bda25b30bb6, type: 2}
+  cardStyleSO: {fileID: 11400000, guid: d77be52644bda4c03a7c7d37dd8b7df5, type: 2}
   cardBackImage: {fileID: 7599462718863330787}
   cardNameTMP: {fileID: 7139281332698676969}
   cardDescriptionTMP: {fileID: 8676914060283658966}
-  attackPoints: 24
+  energizePoints: 30
 --- !u!1 &3209669814007315215
 GameObject:
   m_ObjectHideFlags: 0

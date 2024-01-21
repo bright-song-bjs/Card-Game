@@ -1,8 +1,12 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public abstract class CardBase: MonoBehaviour {
+public abstract class CardBase: MonoBehaviour, IPointerClickHandler {
+  [HideInInspector]
+  public Caster owner;
+
   [SerializeField]
   private CardStyleSO cardStyleSO;
 
@@ -22,4 +26,12 @@ public abstract class CardBase: MonoBehaviour {
   }
 
   public abstract void Cast(Caster caster);
+
+  public void OnPointerClick(PointerEventData eventData) {
+    if (owner == Caster.Player) {
+      Cast(owner);
+      // here it simply disappears for test purposes
+      Destroy(gameObject);
+    }
+  }
 }

@@ -12,6 +12,7 @@ public class GameDataSO: ScriptableObject {
 			{ CardType.HealCard, 1 },
 			{ CardType.AttackCard, 1 },
 			{ CardType.SpawnCard, 1 },
+			{ CardType.EnergizeCard, 1},
 		};
 
 	public List<int> playerUnlockedVertices =

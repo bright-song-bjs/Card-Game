@@ -16,13 +16,17 @@ public class AttackCard: CardBase {
 
 	private void AttackEnemy() {
 		var enemy = EnemyController.Instance;
-		var healPoints = enemy.GetHealthPoints();
-		enemy.SetHealthPoints(healPoints - attackPoints);
+		if (enemy != null) {
+			var healPoints = enemy.GetHealthPoints();
+			enemy.SetHealthPoints(healPoints - attackPoints);
+		}
 	}
 
 	private void AttackPlayer() {
 		var player = PlayerController.Instance;
-		var healthPoints = player.GetHealthPoints();
-		player.SetHealthPoints(healthPoints - attackPoints);
+		if (player != null) {
+			var healthPoints = player.GetHealthPoints();
+			player.SetHealthPoints(healthPoints - attackPoints);
+		}
 	}
 }

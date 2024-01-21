@@ -224,10 +224,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4700a40fce74ebabf0f50a022e1734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: 0
   cardStyleSO: {fileID: 11400000, guid: 06d39d7344b4940868e39564d5c4db16, type: 2}
   cardBackImage: {fileID: 7599462718863330787}
   cardNameTMP: {fileID: 7139281332698676969}
   cardDescriptionTMP: {fileID: 8676914060283658966}
+  healPoints: 20
 --- !u!1 &3209669814007315215
 GameObject:
   m_ObjectHideFlags: 0
