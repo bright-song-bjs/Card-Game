@@ -1,9 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public abstract class CardBase: MonoBehaviour, IPointerClickHandler {
+public abstract class CardBase: MonoBehaviour {
   [HideInInspector]
   public Caster owner;
 
@@ -23,15 +22,5 @@ public abstract class CardBase: MonoBehaviour, IPointerClickHandler {
     cardBackImage.sprite = cardStyleSO.cardBackSprite;
     cardNameTMP.text = cardStyleSO.cardName;
     cardDescriptionTMP.text = cardStyleSO.cardDescription;
-  }
-
-  public abstract void Cast(Caster caster);
-
-  public void OnPointerClick(PointerEventData eventData) {
-    if (owner == Caster.Player) {
-      Cast(owner);
-      // here it simply disappears for test purposes
-      Destroy(gameObject);
-    }
   }
 }

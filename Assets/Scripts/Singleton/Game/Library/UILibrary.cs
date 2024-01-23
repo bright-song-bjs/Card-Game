@@ -5,9 +5,9 @@ public class UILibrary: MonoBehaviour {
 	public static UILibrary Instance { get; private set; }
 
 	[SerializeField]
-	private List<UILibraryItem> items;
+	private List<UIBase> uiBasePrefabs;
 	
-	private Dictionary<UIType, UIBase> uiBaseByUIType =
+	private Dictionary<UIType, UIBase> uiBasePrefabByType =
 		new Dictionary<UIType, UIBase>();
 
 	private void Awake() {
@@ -18,12 +18,12 @@ public class UILibrary: MonoBehaviour {
 			Destroy(gameObject);
 		}
 
-		foreach (var item in items) {
-			uiBaseByUIType.Add(item.uiType, item.uiBase);
+		foreach (var prefab in uiBasePrefabs) {
+			uiBasePrefabByType.Add(prefab.type, prefab);
 		}
 	}
 
-	public UIBase Get(UIType uiType) {
-		return uiBaseByUIType[uiType];
+	public UIBase GetUIBasePrefab(UIType type) {
+		return uiBasePrefabByType[type];
 	}
 }

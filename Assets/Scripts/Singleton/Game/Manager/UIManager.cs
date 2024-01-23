@@ -23,8 +23,8 @@ public class UIManager: MonoBehaviour {
 		}
 	}
 
-	public UIBase OpenPanel(UIType uiType, bool hideCurrent = true) {
-		var uiPrefab = UILibrary.Instance.Get(uiType);
+	public UIBase OpenMenu(UIType uiType, bool hideCurrent = true) {
+		var uiPrefab = UILibrary.Instance.GetUIBasePrefab(uiType);
 		var uiBase = Instantiate(uiPrefab, mainCanvas, false);
 		if (!uiStack.IsEmpty && hideCurrent) {
 			uiStack.Peek().Hide();
@@ -34,7 +34,7 @@ public class UIManager: MonoBehaviour {
 		return uiBase;
 	}
 
-	public void CloseCurrentPanel() {
+	public void CloseCurrentMenu() {
 		if (uiStack.IsEmpty) {
 			return;
 		}
